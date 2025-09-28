@@ -6,5 +6,8 @@ class ListProduct:
     def print_products(self):
         for p in self.products:
             print(p)
-    def arrange_products(self):
-        disc=self.products.sort()
+    def sort_desc_price(self):
+        for i in range(0,len(self.products)):
+            for j in range(i+1,len(self.products)):
+                pi=self.products[i]
+                pj=self.products[j]
