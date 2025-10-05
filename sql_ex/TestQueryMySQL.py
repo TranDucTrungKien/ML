@@ -14,6 +14,8 @@ conn = mysql.connector.connect(
                 password=password)
 cursor = conn.cursor()
 
+#(2.1) Truy vấn toàn bộ Sinh viên:
+
 sql="select * from student"
 cursor.execute(sql)
 
@@ -30,6 +32,9 @@ for item in dataset:
     print(align.format(id,code,name,age))
 
 cursor.close()
+
+#(2.2) Truy vấn các Sinh viên có độ tuổi từ 22 tới 26:
+
 cursor = conn.cursor()
 sql="SELECT * FROM student where Age>=22 and Age<=26"
 cursor.execute(sql)
@@ -47,6 +52,9 @@ for item in dataset:
     print(align.format(id,code,name,age))
 
 cursor.close()
+
+#(2.3) Truy vấn toàn bộ sinh viên và sắp xếp theo tuổi tăng dần:
+
 cursor = conn.cursor()
 sql="SELECT * FROM student " \
     "order by Age asc"
@@ -65,6 +73,9 @@ for item in dataset:
     print(align.format(id,code,name,age))
 
 cursor.close()
+
+#(2.4) Truy vấn các Sinh viên có độ tuổi từ 22 tới 26 và sắp xếp theo tuổi giảm dần:
+
 cursor = conn.cursor()
 sql="SELECT * FROM student " \
     "where Age>=22 and Age<=26 " \
@@ -85,6 +96,8 @@ for item in dataset:
 
 cursor.close()
 
+#(2.5) Truy vấn chi tiết thông tin Sinh viên khi biết Id:
+
 cursor = conn.cursor()
 sql="SELECT * FROM student " \
     "where ID=1 "
@@ -101,6 +114,8 @@ if dataset!=None:
 
 cursor.close()
 
+#(2.6) Truy vấn dạng phân trang Student:
+#Lần thứ nhất truy vấn 3 dòng dữ liệu đầu tiên (các ID 1, 2, 3) thì câu SQL viết như sau:
 cursor = conn.cursor()
 sql="SELECT * FROM student LIMIT 3 OFFSET 0"
 cursor.execute(sql)
@@ -119,6 +134,7 @@ for item in dataset:
 
 cursor.close()
 
+#Lần thứ nhì truy vấn 3 dòng dữ liệu còn lại (các ID 4, 5, 6) thì câu SQL viết như sau:
 cursor = conn.cursor()
 sql="SELECT * FROM student LIMIT 3 OFFSET 3"
 cursor.execute(sql)
@@ -137,6 +153,7 @@ for item in dataset:
 
 cursor.close()
 
+#Paging
 print("PAGING!!!!!")
 cursor = conn.cursor()
 sql="SELECT count(*) FROM student"
@@ -164,6 +181,7 @@ for offset in range(0,rowcount,step):
 
 cursor.close()
 
+#(3.1) Thêm mới 1 Student
 cursor = conn.cursor()
 
 sql="insert into student (code,name,age) values (%s,%s,%s)"
@@ -177,6 +195,9 @@ conn.commit()
 print(cursor.rowcount," record inserted")
 
 cursor.close()
+
+#(3.2) Thêm mới nhiều Student:
+
 cursor = conn.cursor()
 
 sql="insert into student (code,name,age) values (%s,%s,%s)"
@@ -194,6 +215,9 @@ conn.commit()
 print(cursor.rowcount," record inserted")
 
 cursor.close()
+
+#(4.1) Cập nhật tên Sinh viên có Code=’sv09′ thành tên mới “Hoàng Lão Tà”
+
 cursor = conn.cursor()
 sql="update student set name='Hoàng Lão Tà' where Code='sv09'"
 cursor.execute(sql)
@@ -201,6 +225,8 @@ cursor.execute(sql)
 conn.commit()
 
 print(cursor.rowcount," record(s) affected")
+
+#(5.1) Xóa Student có ID=14
 conn = mysql.connector.connect(
                 host=server,
                 port=port,
@@ -214,6 +240,8 @@ cursor.execute(sql)
 conn.commit()
 
 print(cursor.rowcount," record(s) affected")
+
+#(5.2) Xóa Student có ID=13 với SQL Injection
 conn = mysql.connector.connect(
                 host=server,
                 port=port,
