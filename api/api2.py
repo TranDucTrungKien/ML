@@ -1,6 +1,6 @@
 from openai import OpenAI
 
-client = OpenAI(api_key="")  # Tự động lấy key từ biến môi trường
+client = OpenAI(api_key="your_api_key")  # Tự động lấy key từ biến môi trường
 
 
 def chat():
