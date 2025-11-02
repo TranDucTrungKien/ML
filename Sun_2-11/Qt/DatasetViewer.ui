@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dataset Viewer - House Price Analysis</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #f0f4f8, stop:1 #d9e2ec);
+}
+QTableWidget {
+    background-color: white;
+    border: 2px solid #3498db;
+    border-radius: 10px;
+    gridline-color: #bdc3c7;
+    selection-background-color: #3498db;
+    selection-color: white;
+}
+QTableWidget::item {
+    padding: 8px;
+}
+QHeaderView::section {
+    background-color: #2c3e50;
+    color: white;
+    padding: 10px;
+    border: 1px solid #34495e;
+    font-weight: bold;
+    font-size: 11pt;
+}
+QMenuBar {
+    background-color: #34495e;
+    color: white;
+    padding: 5px;
+}
+QMenuBar::item {
+    background-color: transparent;
+    color: white;
+    padding: 5px 10px;
+}
+QMenuBar::item:selected {
+    background-color: #3498db;
+}
+QStatusBar {
+    background-color: #2c3e50;
+    color: white;
+    font-size: 10pt;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QFrame" name="frame_Header">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>1160</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #3498db, stop:1 #2980b9);
+    border-radius: 15px;
+    border: 2px solid #2c3e50;
+}</string>
+    </property>
+    <widget class="QLabel" name="label_Title">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>1140</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+    color: white;
+    font-size: 24pt;
+    font-weight: bold;
+    background: transparent;
+}</string>
+     </property>
+     <property name="text">
+      <string>📊 Dataset Viewer - Real Estate Analysis</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget_Data">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>110</y>
+      <width>1160</width>
+      <height>620</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTableWidget {
+    font-size: 10pt;
+}
+QTableWidget::item:selected {
+    background-color: #3498db;
+    color: white;
+}
+QTableWidget::item:hover {
+    background-color: #ecf0f1;
+}</string>
+    </property>
+    <property name="alternatingRowColors">
+     <bool>true</bool>
+    </property>
+    <column>
+     <property name="text">
+      <string>💰 Avg. Area Income</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>🏠 Avg. Area House Age</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>🚪 Avg. Area Number of Rooms</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>🛏️ Avg. Area Number of Bedrooms</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>👥 Area Population</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>💵 Original Price</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>🎯 Predicted Price</string>
+     </property>
+    </column>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1200</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOpen"/>
+    <addaction name="actionSave"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <addaction name="actionRefresh"/>
+    <addaction name="actionFilter"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuView"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="styleSheet">
+    <string notr="true">padding: 5px;</string>
+   </property>
+  </widget>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open Dataset</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save Data</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionRefresh">
+   <property name="text">
+    <string>Refresh</string>
+   </property>
+  </action>
+  <action name="actionFilter">
+   <property name="text">
+    <string>Apply Filter</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

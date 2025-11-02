@@ -1,0 +1,721 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1400</width>
+    <height>850</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>AI House Price Prediction System</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #e8eaf6, stop:1 #c5cae9);
+}
+QPushButton {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #3498db, stop:1 #2980b9);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 11pt;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2980b9, stop:1 #1f6ba8);
+}
+QPushButton:pressed {
+    background: #1a5490;
+}
+QLineEdit {
+    background-color: white;
+    border: 2px solid #3498db;
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 10pt;
+}
+QLineEdit:focus {
+    border: 2px solid #2980b9;
+    background-color: #f0f8ff;
+}
+QTableWidget {
+    background-color: white;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    gridline-color: #bdc3c7;
+}
+QTableWidget::item:selected {
+    background-color: #3498db;
+    color: white;
+}
+QHeaderView::section {
+    background-color: #2c3e50;
+    color: white;
+    padding: 8px;
+    border: 1px solid #34495e;
+    font-weight: bold;
+}
+QLabel {
+    color: #2c3e50;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QFrame" name="frame_Header">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>1360</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #667eea, stop:0.5 #764ba2, stop:1 #f093fb);
+    border-radius: 15px;
+    border: 3px solid #5a67d8;
+}</string>
+    </property>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>1340</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>22</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white;
+background: transparent;
+font-size: 22pt;
+font-weight: bold;</string>
+     </property>
+     <property name="text">
+      <string>🏡 AI House Price Prediction System</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame_DataSelection">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>100</y>
+      <width>1360</width>
+      <height>70</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame {
+    background-color: white;
+    border-radius: 10px;
+    border: 2px solid #3498db;
+}</string>
+    </property>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>15</y>
+       <width>120</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: bold 11pt &quot;Segoe UI&quot;;
+color: #2c3e50;
+background: transparent;
+border: none;</string>
+     </property>
+     <property name="text">
+      <string>📁 Select Data:</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_Select">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>15</y>
+       <width>760</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 10pt &quot;Segoe UI&quot;;</string>
+     </property>
+     <property name="placeholderText">
+      <string>Choose dataset file...</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_PickData">
+     <property name="geometry">
+      <rect>
+       <x>930</x>
+       <y>15</y>
+       <width>200</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>📂 Pick Dataset</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_ViewData">
+     <property name="geometry">
+      <rect>
+       <x>1150</x>
+       <y>15</y>
+       <width>200</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>👁️ View Dataset</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame_Training">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>180</y>
+      <width>900</width>
+      <height>70</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame {
+    background-color: white;
+    border-radius: 10px;
+    border: 2px solid #e74c3c;
+}</string>
+    </property>
+    <widget class="QLabel" name="label_12">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>15</y>
+       <width>130</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: bold 10pt &quot;Segoe UI&quot;;
+color: #e74c3c;
+background: transparent;
+border: none;</string>
+     </property>
+     <property name="text">
+      <string>🎓 Training Rate:</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_TrainingRate">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>15</y>
+       <width>180</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 10pt &quot;Segoe UI&quot;;
+border: 2px solid #e74c3c;</string>
+     </property>
+     <property name="placeholderText">
+      <string>e.g., 0.8</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_TrainModel">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>15</y>
+       <width>250</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #e74c3c, stop:1 #c0392b);</string>
+     </property>
+     <property name="text">
+      <string>🚀 Train Model</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_EvaluateModel">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>15</y>
+       <width>250</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #27ae60, stop:1 #229954);</string>
+     </property>
+     <property name="text">
+      <string>📊 Evaluate Model</string>
+     </property>
+    </widget>
+   </widget>
+   
+   <widget class="QTableWidget" name="tableWidget_Data">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>270</y>
+      <width>880</width>
+      <height>260</height>
+     </rect>
+    </property>
+    <property name="alternatingRowColors">
+     <bool>true</bool>
+    </property>
+    <column>
+     <property name="text">
+      <string>💰 Income</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>🏠 Age</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>🚪 Rooms</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>🛏️ Bedrooms</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>👥 Population</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>💵 Original</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>🎯 Predicted</string>
+     </property>
+    </column>
+   </widget>
+   
+   <widget class="QTableWidget" name="tableWidget_Coeff">
+    <property name="geometry">
+     <rect>
+      <x>950</x>
+      <y>230</y>
+      <width>420</width>
+      <height>140</height>
+     </rect>
+    </property>
+    <property name="alternatingRowColors">
+     <bool>true</bool>
+    </property>
+    <column>
+     <property name="text">
+      <string>Feature</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Coefficient</string>
+     </property>
+    </column>
+   </widget>
+   
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>950</x>
+      <y>185</y>
+      <width>420</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: bold 12pt &quot;Segoe UI&quot;;
+color: #f39c12;</string>
+    </property>
+    <property name="text">
+     <string>📈 Model Coefficients</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>950</x>
+      <y>400</y>
+      <width>180</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: bold 10pt &quot;Segoe UI&quot;;
+color: #16a085;</string>
+    </property>
+    <property name="text">
+     <string>📊 MAE:</string>
+    </property>
+   </widget>
+   
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>950</x>
+      <y>440</y>
+      <width>180</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: bold 10pt &quot;Segoe UI&quot;;
+color: #16a085;</string>
+    </property>
+    <property name="text">
+     <string>📉 MSE:</string>
+    </property>
+   </widget>
+   
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>950</x>
+      <y>480</y>
+      <width>180</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: bold 10pt &quot;Segoe UI&quot;;
+color: #16a085;</string>
+    </property>
+    <property name="text">
+     <string>📐 RMSE:</string>
+    </property>
+   </widget>
+   
+   <widget class="QLineEdit" name="lineEdit_MAE">
+    <property name="geometry">
+     <rect>
+      <x>1140</x>
+      <y>400</y>
+      <width>210</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   
+   <widget class="QLineEdit" name="lineEdit_MSE">
+    <property name="geometry">
+     <rect>
+      <x>1140</x>
+      <y>440</y>
+      <width>210</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   
+   <widget class="QLineEdit" name="lineEdit_RMSE">
+    <property name="geometry">
+     <rect>
+      <x>1140</x>
+      <y>480</y>
+      <width>210</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>550</y>
+      <width>200</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>💰 Avg. Area Income:</string>
+    </property>
+   </widget>
+   
+   <widget class="QLineEdit" name="lineEdit_Income">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>550</y>
+      <width>200</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>e.g., 79545.45</string>
+    </property>
+   </widget>
+   
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>550</y>
+      <width>200</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>🏠 Avg. House Age:</string>
+    </property>
+   </widget>
+   
+   <widget class="QLineEdit" name="lineEdit_HouseAge">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>550</y>
+      <width>200</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>e.g., 5.68</string>
+    </property>
+   </widget>
+   
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>600</y>
+      <width>200</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>🚪 Avg. Number of Rooms:</string>
+    </property>
+   </widget>
+   
+   <widget class="QLineEdit" name="lineEdit_Rooms">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>600</y>
+      <width>200</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>e.g., 7.00</string>
+    </property>
+   </widget>
+   
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>600</y>
+      <width>200</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>🛏️ Avg. Number of Bedrooms:</string>
+    </property>
+   </widget>
+   
+   <widget class="QLineEdit" name="lineEdit_Bedrooms">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>600</y>
+      <width>200</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>e.g., 4.00</string>
+    </property>
+   </widget>
+   
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>650</y>
+      <width>200</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>👥 Area Population:</string>
+    </property>
+   </widget>
+   
+   <widget class="QLineEdit" name="lineEdit_Population">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>650</y>
+      <width>200</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>e.g., 36000</string>
+    </property>
+   </widget>
+   
+   <widget class="QPushButton" name="pushButton_Predict">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>710</y>
+      <width>850</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #667eea, stop:1 #764ba2);
+font-size: 14pt;</string>
+    </property>
+    <property name="text">
+     <string>🎯 PREDICT PRICE</string>
+    </property>
+   </widget>
+   
+   <widget class="QLabel" name="label_13">
+    <property name="geometry">
+     <rect>
+      <x>950</x>
+      <y>540</y>
+      <width>420</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: bold 18pt &quot;Segoe UI&quot;;
+color: #e74c3c;</string>
+    </property>
+    <property name="text">
+     <string>💎 Predicted Price</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   
+   <widget class="QLineEdit" name="lineEdit_Pred">
+    <property name="geometry">
+     <rect>
+      <x>980</x>
+      <y>610</y>
+      <width>360</width>
+      <height>70</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: bold 20pt &quot;Segoe UI&quot;;
+color: #e74c3c;</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+    <property name="placeholderText">
+     <string>$ 0.00</string>
+    </property>
+   </widget>
+   
+   <widget class="QPushButton" name="pushButton_SaveModel">
+    <property name="geometry">
+     <rect>
+      <x>980</x>
+      <y>700</y>
+      <width>170</width>
+      <height>45</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #8e44ad, stop:1 #6c3483);</string>
+    </property>
+    <property name="text">
+     <string>💾 Save Model</string>
+    </property>
+   </widget>
+   
+   <widget class="QPushButton" name="pushButton_LoadModel">
+    <property name="geometry">
+     <rect>
+      <x>1170</x>
+      <y>700</y>
+      <width>170</width>
+      <height>45</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #16a085, stop:1 #138d75);</string>
+    </property>
+    <property name="text">
+     <string>📁 Load Model</string>
+    </property>
+   </widget>
+   
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1400</width>
+     <height>27</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
